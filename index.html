@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Study Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header: Option A (Gradient Glow) -->
+    <header class="site-header">
+      <div class="header-inner">
+        <h1 class="site-title">📚 <span>STUDY</span> TRACKER</h1>
+        <p class="tagline">✨ Plan • Track • Achieve ✨</p>
+      </div>
+
+      <div class="progress-inline">
+        <div class="progress-label">Your Progress</div>
+        <div class="progress-mini">
+          <div id="miniProgressFill"></div>
+        </div>
+        <div id="miniProgressText">0%</div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <!-- Left: Calendar -->
+      <section class="panel calendar-panel">
+        <div class="panel-header">
+          <div class="month-controls">
+            <button id="prevMonth" class="icon-btn">‹</button>
+            <div id="monthYear" class="month-year"></div>
+            <button id="nextMonth" class="icon-btn">›</button>
+          </div>
+          <div class="calendar-actions">
+            <input id="search" type="search" placeholder="Search tasks..." />
+          </div>
+        </div>
+
+        <div class="weekdays">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </section>
+
+      <!-- Right: Controls + Task list -->
+      <section class="panel control-panel">
+
+        <!-- Add Task -->
+        <div class="card add-card">
+          <h3>➕ Add New Task</h3>
+          <form id="taskForm" class="task-form">
+            <input id="taskName" type="text" placeholder="Task name (e.g. Math worksheet)" required />
+            <select id="taskCategory" required>
+              <option value="" disabled selected>Category</option>
+              <option>Homework</option>
+              <option>Exam</option>
+              <option>Project</option>
+              <option>Personal Study</option>
+            </select>
+            <input id="taskDate" type="date" required />
+            <select id="taskPriority" required>
+              <option value="" disabled selected>Priority</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
+            <div class="form-row">
+              <button type="submit" class="btn primary">Add Task</button>
+              <button type="button" id="clearForm" class="btn ghost">Clear</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filters -->
+        <div class="card filter-card">
+          <h4>Filters</h4>
+          <div class="filters-row">
+            <select id="filterCategory">
+              <option value="All">All Categories</option>
+              <option>Homework</option>
+              <option>Exam</option>
+              <option>Project</option>
+              <option>Personal Study</option>
+            </select>
+            <select id="filterPriority">
+              <option value="All">All Priorities</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+            <select id="filterStatus">
+              <option value="All">All Status</option>
+              <option>Pending</option>
+              <option>Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Legend & Progress per category -->
+        <div class="card legend-card">
+          <h4>Category Colors</h4>
+          <div class="legend-list">
+            <div><span class="dot cat-homework"></span> Homework</div>
+            <div><span class="dot cat-exam"></span> Exam</div>
+            <div><span class="dot cat-project"></span> Project</div>
+            <div><span class="dot cat-personal"></span> Personal Study</div>
+          </div>
+        </div>
+
+        <!-- Task List -->
+        <div class="card tasks-card">
+          <h4>Tasks <small id="taskCount"></small></h4>
+          <div id="tasksContainer" class="tasks-container" aria-live="polite"></div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Day modal -->
+    <div id="dayModal" class="modal hidden" role="dialog" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modalDateTitle">Tasks on DATE</h3>
+          <button id="closeModal" class="icon-btn">✕</button>
+        </div>
+        <div id="modalTasks" class="modal-tasks"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div>Made with ❤️ — Study Tracker</div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
